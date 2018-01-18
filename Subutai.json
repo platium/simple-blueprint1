@@ -1,12 +1,24 @@
 {
   "name": "SubutaiBlueprint",
   "description": "Environment configuration test blueprint",
+  "backupContainerType": {
+    "description": "you can set TINY,SMALL,MEDIUM,LARGE,HUGE",
+    "type": "enum",
+    "default": "SMALL",
+    "validation": "TINY,SMALL,MEDIUM,LARGE,HUGE"
+  },
+  "contName": {
+    "description": "Enter container name",
+    "type": "string",
+    "default": "hey man",
+    "validation": "[a-zA-Z0-9]+"
+  },
   "nodes": [
     {
-      "name": "backup-server",
+      "name": "${contName}",
       "template": "ubuntu16",
       "peer_group": "HTTP-GROUP",
-      "size": "MEDIUM"
+      "size": "${backupContainerType}"
     }
   ],
   "peerGroups": [
